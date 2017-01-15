@@ -5,48 +5,47 @@ function show() {
     });
 }
 
-function build(full_json) {
-    var total = 0;
+function build(full_string) {
+    var max_value = 0;
     var parsed_json = [];
-    console.log(JSON.stringify(full_json));
-/*    for (var i = 0; i < full_json.length; i++) {
-        console.log(full_json[i]);
-        total += parseInt(full_json[i].value);
+    full_json = JSON.parse(full_string.substring(1, full_string.length - 1));
+    console.log(full_json);
+    for (var subreddit in full_json) {
+        if (full_json.hasOwnProperty(subreddit)) {
+            if (full_json[subreddit] > max_value) {
+                max_value = full_json[subreddit];
+            }
+            //console.log(subreddit  + ">" + full_json[subreddit]);
+        }
     }
-    console.log(total);
-*/
-    for (var i = 0; i < full_json.length; i++) {
-        parsed_json.push({
-            r: (full_json[i].value / total),
-            label: full_json[i].text
-        });
-    }
-    console.log("done building!");
+    console.log("total" + max_value);
 
+    for (var subreddit in full_json) {
+        if (full_json.hasOwnProperty(subreddit)) {
+            parsed_json.push({
+                r: (full_json[subreddit] / max_value),
+                label: subreddit 
+            });
+        }
+    }
+    console.log("done building!" + JSON.stringify(parsed_json));
     return parsed_json;
 }
 
 function dragCircles(full_json) {
-
+    //debugger;
     console.log(full_json);
     parsed_json = build(full_json);
-    var circleData = getData();
+    var circleData = parsed_json;
+    console.log("circle data" + circleData);
 
+    var width = 600;
+    var height = 500;
     var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height"),
     radius = 40;
     console.log("here 1");
-
-/*    var circles = d3.range(getData().length + 1).map(function() {
-        json = getData();
-        return {
-            x: Math.round(Math.random() * (width - radius * 2) + radius),
-            y: Math.round(Math.random() * (height - radius * 2) + radius),
-            r: json.r,
-            text: json.label
-        };
-    });*/ 
     console.log("here 2");
 
     var color = d3.scaleOrdinal()
@@ -70,6 +69,7 @@ function dragCircles(full_json) {
     circleAttributes.append("text")
         .data(circleData)
         .text(function (d) { return d.label; });
+
 /*    var text = svgContainer.selectAll("text")
         .data(circleData)
         .enter()           
@@ -99,7 +99,7 @@ function dragCircles(full_json) {
 }
 
 function clicked() {
-    dragCircles(document.getElementById("n_circles").value);
+    //dragCircles(document.getElementById("n_circles").value);
     //console.log(document.getElementById("n_circles").value);
 }
 
