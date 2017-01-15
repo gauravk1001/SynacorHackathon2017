@@ -46,5 +46,5 @@ def sortBySubscribers(subreddits):
 
 if __name__ == "__main__":
     search_query = 'soccer'
-    results = sortBySubscribers(getSubreddits(search_query))
-    print(results)
+    #results = sortBySubscribers(getSubreddits(search_query))
+    #print(results)
