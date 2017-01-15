@@ -1,7 +1,35 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<h2>Search Results</h2>
-  {% for result in jsonResults %}
-    {% for elem in result %}
-      <td>{{elem}}</td>
-    {% endfor %}
-{% endfor %}
+    <title>Get Me A Sub</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'tryd3.js') }}"> </script>
+    <script>
+        var funcCaller = dragCircles('{{ jsonResults|tojson }}');
+    </script>
+</head>
+<body>
+
+    <h1>My First Heading</h1>
+    <p>My first paragraph.</p>
+    <h2>Search Results</h2>
+        {% for result in jsonResults %}
+            {% for elem in result %}
+                <td>{{elem}}</td>
+            {% endfor %}
+        {% endfor %}
+    <input type="text" placeholder="Enter number of circles" id="n_circles" />
+    <input type="button" value="submit" onclick="clicked()" />
+    <svg width="960" height="500"></svg>
+
+    <style>
+        .active {
+            stroke: #000;
+            stroke-width: 2px;
+        }
+    </style>
+
+</body>
+</html>
