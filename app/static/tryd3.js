@@ -39,8 +39,6 @@ function dragCircles(full_json) {
     var circleData = parsed_json;
     console.log("circle data" + circleData);
 
-    var width = 600;
-    var height = 500;
     var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height"),
@@ -58,16 +56,15 @@ function dragCircles(full_json) {
         .append("circle")
         .attr("cx", function(d) { return Math.round(Math.random() * (width - radius * 2) + radius); })
         .attr("cy", function(d) { return Math.round(Math.random() * (height - radius * 2) + radius); })
-        .attr("r", function(d) { return d.r; })
+        .attr("r", function(d) {  console.log(d);return d.r; })
         .style("fill", function(d, i) { return color(i); })
-        //.attr("stroke", "black")
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
 
     circleAttributes.append("text")
-        .data(circleData)
+        //.data(circleData)
         .text(function (d) { return d.label; });
 
 /*    var text = svgContainer.selectAll("text")
@@ -96,6 +93,10 @@ function dragCircles(full_json) {
     function dragended(d) {
         d3.select(this).classed("active", false);
     }
+}
+
+function loadCircles() {
+
 }
 
 function clicked() {
