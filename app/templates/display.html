@@ -18,12 +18,17 @@
             stroke: #000;
             stroke-width: 2px;
         }
+        body {
+            background: white url('http://www.clker.com/cliparts/2/6/7/e/132910740455016736reddit-alien-hi.png') no-repeat;
+            background-position: center center;
+            width: 80%;
+        }
     </style>
 
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script>
         var funcCaller = dragCircles('{{ jsonResults|tojson }}');
     </script>

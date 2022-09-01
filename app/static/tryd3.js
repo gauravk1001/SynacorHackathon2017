@@ -56,7 +56,7 @@ function dragCircles(full_json) {
         .append("circle")
         .attr("cx", function(d) { return Math.round(Math.random() * (width - radius * 2) + radius); })
         .attr("cy", function(d) { return Math.round(Math.random() * (height - radius * 2) + radius); })
-        .attr("r", function(d) {  console.log(d['r']);return (d.r * 100); })
+        .attr("r", function(d) {  console.log(d['r']);return (d.r * 120); })
         .style("fill", function(d, i) { return color(i); })
         .call(d3.drag()
             .on("start", dragstarted)
@@ -67,10 +67,14 @@ function dragCircles(full_json) {
         .attr("x", function(d) { return 100; })
         .attr("y", function(d) { return 200; })
         .attr("font-family", "sans-serif")
-        .attr("font-size", "100px")
+        .attr("font-size", "10px")
         .attr("font-color", "black")
-        .text("word");
-        //.text(function (d) { console.log(d['label']) ;return d.label; });
+        //.text("word");
+        .text(function (d) { console.log(d['label']) ;return d.label; });
+
+
+    circleAttributes.append("a")
+        .attr("xlink:href", function(d) { return "http://www.reddit.com/r/" + d.label});
 
 /*    var text = svgContainer.selectAll("text")
         .data(circleData)

@@ -14,12 +14,13 @@
 <body>
     <h1>Get Me A Sub(reddit)!</h1>
       <form action="" method="post" name="login">
-      {{ form.hidden_tag() }}
+          {{ form.hidden_tag() }}
+          <br/>    
       <p>
           I want a sub about : <br>
           {{ form.search_query(size=20) }}<br>
       </p>
-          <p><input type="submit" value="Search!"></p>
+          <p><input class="btn btn-primary" type="submit" value="Search!"></p>
       </form>
       <style>
           .active {
@@ -27,9 +28,13 @@
               stroke-width: 2px;
           }
           body {
-              background: white url('http://www.clker.com/cliparts/2/6/7/e/132910740455016736reddit-alien-hi.png') no-repeat ;
+              background: white url('http://www.clker.com/cliparts/2/6/7/e/132910740455016736reddit-alien-hi.png') no-repeat;
               background-position: center center;
-        }
+              margin: auto 100px auto 100px;
+          }
+          p {
+              font-size: 30px;
+          }
         </style>
 </body>
 
